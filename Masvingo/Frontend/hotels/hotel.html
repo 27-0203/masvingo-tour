@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="floating-wpp.min.js"></script>
+    <link rel="stylesheet" href="floating-wpp.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @font-face{
+            font-family: My_font;
+            src: url(fonts/CrimsonPro-VariableFont_wght.ttff.ttf);
+        }
+        .pro {
+    perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.flip-card {
+    position: relative;
+    width: 100%; /* Adjust width */
+    height: 300px; /* Adjust height */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.pro {
+    perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.flip-card {
+    position: relative;
+    width: 100%; /* Full width of the container */
+    max-width: 300px; /* Maximum width of the card */
+    height: 400px; /* Fixed height for the card */
+    margin: 15px; /* Space between cards */
+    cursor: pointer; /* Change cursor to pointer */
+    overflow: hidden; /* Hide overflow */
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s; /* Smooth transition */
+    transform-style: preserve-3d; /* Preserve 3D effect */
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide back when facing front */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    padding: 10px; /* Padding for content */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+.flip-card-front {
+    background-color: white; /* Front view */
+}
+
+.flip-card-back {
+    background-color: lightgray; /* Back view */
+    transform: rotateY(180deg); /* Rotate back side */
+}
+
+.flipped {
+    transform: rotateY(180deg); /* Flip effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .flip-card {
+        max-width: 90%; /* Full width on smaller screens */
+        height: auto; /* Allow height to adjust */
+    }
+
+    .flip-card-inner {
+        flex-direction: column; /* Stack vertically on small screens */
+    }
+}
+
+#Product1{ 
+    padding: 20px; 
+    box-sizing: border-box; 
+}
+
+.pro {
+    margin: 20px 0; 
+    display: inline-block; 
+    vertical-align: top; 
+    width: calc(33.33% - 40px); }
+
+.flip-card {
+    height: 400px;
+    perspective: 1000px; 
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.carousel {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Adjust as needed */
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* Image container */
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Individual image */
+        .carousel-images img {
+            width: 100%;
+            display: block;
+            flex-shrink: 0; /* Prevent images from shrinking */
+        }
+
+        /* Next button */
+        .next-button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .next-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #header #logo{
+            height: 60px;
+            border-radius: 6px;
+            
+        }
+       #logo h1{
+            padding: 5px;
+        }
+        #header h1  {
+            margin-left: -297px;
+            
+        }
+
+        #header h1 span{
+            color: black;
+            font-family: My_font;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            overflow: hidden;
+            color: white;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+        }
+       
+        
+</style>
+<body>
+    
+
+    <section id="hero-section">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="https://cdn.bfldr.com/4HTSVWZZ/at/2cjrhks532w6z68b2gh89q/Constance-Prince_Maurice-Video_Teaser.mp4" type="video/mp4">
+                <img src="https://www.tugwimukosidam.com/wp-content/uploads/2022/09/great-zimbabwe.webp" alt="Great Zimbabwe Ruins">
+            </video>
+            <div class="video-overlay"></div>
+        </div> <br> <br> <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+       
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+       
+        <h1 style="text-align: center; font-weight: 700; font-size: 50px; color: whitesmoke; margin-top: -20px;"> Hotels Available</h1>
+    <p style="text-align: center;"><span style="color: goldenrod; font-weight: 700;">City of</span> Cultural Riches & Home of Awesomeness</p> 
+        
+
+    </section>
+
+  
+
+    
+
+    <br>
+    <br>
+    <br>
+        <br>
+        <br>
+        <br>
+    
+    <section id="section-hotels">
+
+        <h2 style="color: #041e42;" id="header-tags" >Hotels & Lodges</h2>
+        <br>
+        <div class="wrapper" style="background-color: whitesmoke;">
+            <div class="profile">
+                <img id="image" src="https://dynamic-media.tacdn.com/media/photo-o/2f/0b/4e/f2/caption.jpg?w=700&h=500&s=1" alt="">
+            </div>
+            <div class="intro">
+                <h2 style="color: #041e42;">Dopiro Lodge and Gardens</h2>
+                <p>In web design and development, we often come across designs where text and image are aligned side by side. If you want to achieve this layout, this tutorial is for you. While there are various methods to accomplish this design, this video will focus on a simple, yet fully r …
+                </p>
+                 <div class="rating-star" style="display: flex; color: goldenrod;">
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                </div>
+                <br>
+                <h4  id="simple-list-item-1"><a href="https://www.google.com/maps?q=Dopiro Lodge and Gardens,-20.116391610757564, 30.842375960816813" target="_blank"><i class="fa fa-map-marker" aria-hidden="true" style="color: #088178;"></i>  View Map</a></h4>
+                    <a href="Each/Dopi.html"><button type="button" class="btn btn-danger">View More</button></a>
+                  
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="wrapper">
+            <div class="profile" style="background-color: whitesmoke;">
+                <img id="image" src="https://images.trvl-media.com/lodging/1000000/20000/12900/12805/a964cf47.jpg?impolicy=resizecrop&rw=1200&ra=fit" alt="">
+            </div>
+            <div class="intro">
+                <h2>Great Zimbabwe Hotel</h2>
+                <p>Welcome to the Great Zimbabwe Hotel, a luxurious oasis nestled in the heart of the historic Great Zimbabwe National Monument. Our hotel offers a unique blend of modern comfort and rich cultural heritage, providing guests with an unforgettable experience.</p>
+                <div class="rating-star" style="display: flex; color: goldenrod;">
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                </div>
+                <br>
+                <h4  id="simple-list-item-1"><a href="https://www.google.com/maps?q=Lodge At Ancient City,-20.269550020127745, 30.951763920670892" target="_blank"><i class="fa fa-map-marker" aria-hidden="true" style="color: #088178;"></i>  View Map</a></h4>
+                   <a href="Each/GreatZ.html"><button type="button" class="btn btn-danger">View More</button></a>
+                  
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="wrapper">
+            <div class="profile">
+                <img id="image" src="https://dynamic-media.tacdn.com/media/photo-o/2f/57/f8/cd/caption.jpg?w=700&h=500&s=1" alt="">
+            </div>
+            <div class="intro">
+                <h2>Ancient City Hotel</h2>
+                <p>IDiscover the Ancient City Lodge, a serene retreat located near the iconic ruins of the Great Zimbabwe. Our lodge combines comfort and tradition, offering guests a unique experience steeped in the rich history and culture of Zimbabwe.</p>
+                <div class="rating-star" style="display: flex; color: goldenrod;">
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                </div>
+                <br>
+                
+                <h4  id="simple-list-item-1"><a href="https://www.google.com/maps?q=Lodge At Ancient City,-20.269550020127745, 30.951763920670892" target="_blank"><i class="fa fa-map-marker" aria-hidden="true" style="color: #088178;"></i>  View Map</a></h4>
+                   <a href="Each/Ancient.html"><button type="button" class="btn btn-danger">View More</button></a>
+                  
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="wrapper">
+            <div class="profile">
+                <img id="image" src="https://images.trvl-media.com/lodging/102000000/101850000/101844700/101844621/605af4e7.jpg?impolicy=resizecrop&rw=1200&ra=fit" alt="">
+            </div>
+            <div class="intro">
+                <h2>Urban Lifestyles Hotel</h2>
+                <div class="rating-star" style="display: flex; color: goldenrod;">
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                </div>
+                <br>
+                <p>Experience the essence of modern living at Urban Lifestyle Hotel, where contemporary design meets vibrant city life. Located in the heart of the urban landscape, our hotel offers a perfect blend of comfort, style, and convenience for both business and leisure travelers.</p>
+                <h4  id="simple-list-item-1"><a href="https://www.google.com/maps?q=Urban Lifestyles Hotel,-20.118396248478227, 30.835577304974052" target="_blank"><i class="fa fa-map-marker" aria-hidden="true" style="color: #088178;"></i>  View Map</a></h4>
+                    <a href="Each/urban.html"><button type="button" class="btn btn-danger">View More</button></a>
+                  
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="wrapper">
+            <div class="profile">
+                <img id="image" src="images/bar-area ancient.jpg" alt="">
+            </div>
+            <div class="intro">
+                <h2>Ancient City Lodge</h2>
+                <p>In web design and development, we often come across designs where text and image are aligned side by side. If you want to achieve this layout, this tutorial is for you. While there are various methods to accomplish this design, this video will focus on a simple, yet fully r …
+                </p>
+                <div class="rating-star" style="display: flex; color: goldenrod;">
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                </div>
+                <br>
+                <h4  id="simple-list-item-1"><a href="https://www.google.com/maps?q=Lodge At Ancient City,-20.269550020127745, 30.951763920670892" target="_blank"><i class="fa fa-map-marker" aria-hidden="true" style="color: #088178;"></i>  View Map</a></h4>
+                    <a href="Ancient.html"><button type="button" class="btn btn-danger">View More</button></a>
+                  
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="wrapper">
+            <div class="profile">
+                <img id="image" src="https://dynamic-media.tacdn.com/media/photo-o/2f/09/35/67/caption.jpg?w=1400&h=1000&s=1" alt="">
+            </div>
+            <div class="intro">
+                <h2>Hippo Creek Lodge</h2>
+                <p>Welcome to Hippo Creek Lodge, your ultimate escape into the heart of nature! Nestled along the banks of a serene creek, our lodge offers a tranquil setting where you can unwind and reconnect with the beauty of the outdoors.</p>
+                <div class="rating-star" style="display: flex; color: goldenrod;">
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                    <i class="fa fa-star" aria-hidden="true" style="font-size: 20px;"></i>
+                </div>
+                <br>
+                <h4  id="simple-list-item-1"><a href="https://www.google.com/maps?q=Lodge At Ancient City,-20.269550020127745, 30.951763920670892" target="_blank"><i class="fa fa-map-marker" aria-hidden="true" style="color: #088178;"></i>  View Map</a></h4>
+                    <a href="hippo.html"><button type="button" class="btn btn-danger">View More</button></a>
+                  
+            </div>
+        </div>
+    </section>
+<br>
+<br>
+<br>
+    <section class="map">
+            <h2>Map</h2>
+        <div class="wrapper" style="width: 1000px; margin-left: 250px;">
+           <a href="https://www.bing.com/maps?&ty=30&q=Masvingo%2C%20Masvingo%20Province%2C%20Zimbabwe&satid=id.sid%3A37e7a79b-33fa-4021-8ec5-92cee5c6bf98&vdpid=8132579763618316289&mb=-20.068961~30.823604~-20.079909~30.841973&cardbg=%23F98745&tt=Masvingo%2C%20Masvingo%20Province%2C%20Zimbabwe&tsts0=%2526ty%253D30%2526q%253DMasvingo%25252C%252520Masvingo%252520Province%25252C%252520Zimbabwe%2526satid%253Did.sid%25253A37e7a79b-33fa-4021-8ec5-92cee5c6bf98%2526vdpid%253D8132579763618316289%2526mb%253D-20.068961~30.823604~-20.079909~30.841973%2526cardbg%253D%252523F98745&tstt0=Masvingo%2C%20Masvingo%20Province%2C%20Zimbabwe&cp=-20.072406~30.823354&lvl=15.285961&pi=0&ftst=0&ftics=False&v=2&sV=2&form=S00027"><img src="https://www.bing.com/maps/geoplat/REST/v1/Imagery/Map/RoadVibrant/-20.072291,30.832587/15?ms=648,345&heid=8132579763618316289,707070&fpp=-20.072291374206543,30.832587242126465;178&ml=Basemap,LandCover,Landmarks,OsmBuildings&key=AnTcaqBi2ypp0xI-OZNi4W_ik2KhjgpqioTAtXLC8GzkMBQRMlyxvxyTnd5b73im&c=en-US&fmt=jpeg&od=1&shading=hill&logo=n&da=ro" alt=""></a>
+
+    </section>
+    
+    
+
+
+    <br>
+    <br>
+
+    
+    <section id="newsletter" class="section-p1 section-m">
+        <div class="newstext">
+            <h4>Sign Up for Newsletter</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign Up</button>
+
+        </div>
+
+    </section>
+    <br>
+    
+    <div id="myDiv"></div>
+
+    <footer class="section-p1">
+        <div class="col">
+           <img   src="Images/autoequip2-removebg-preview.png" alt="">
+           
+            <h4>Contact</h4>
+            <p><strong>Address: </strong> 308, 3rd Floor, Regal Star Shopping Mall, 25 George Silundika Avenue
+                Harare</p>
+            <p><strong>Phone: </strong>0789906002 / 07777468826</p>
+            <p><strong>Hours: </strong>08:00 - 16:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <a href="https://www.facebook.com/tatendagori"><i class="fa fa-facebook" aria-hidden="true" style="font-size: 28px; color: #000;"></i></a>
+                    <a href="https://wa.me/263789906002"><i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 28px; color:#000;" ></i></a>
+                    <i class="fa fa-instagram" aria-hidden="true" style="font-size: 28px; color: #000; "></i>
+
+                </div>
+
+            </div>
+        </div>
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms and Conditions</a>
+                <a href="#">Contacts</a>
+
+            </div>
+            <div class="col">
+                <h4>My Account</h4>
+                <a href="#">Sign In</a>
+                <a href="#">View Cart</a>
+                <a href="#">My Wishlist</a>
+                <a href="#">Track My Order</a>
+                <a href="#">Help</a>
+
+
+            </div> 
+
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="copyright">
+               <p>Copyrights @ 2025, Tatenda Gori</p>
+                
+            </div>
+    </footer>
+
+
+    
+    
+
+    
+
+        
+    
+
+
+
+    <script src="scripts.js"></script>
+    <script>
+           const carouselImages = document.querySelector(".carousel-images");
+        const images = document.querySelectorAll(".carousel-images img");
+        const nextButton = document.querySelector(".next-button");
+
+        let currentIndex = 0;
+
+        // Function to show the next image
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % images.length; // Loop back to the first image
+            const offset = -currentIndex * 100; // Calculate the offset
+            carouselImages.style.transform = `translateX(${offset}%)`; // Move the container
+        }
+
+        // Add click event to the "Next" button
+        nextButton.addEventListener("click", showNextImage);
+
+
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const flipCardInner = this.querySelector('.flip-card-inner');
+                flipCardInner.classList.toggle('flipped'); // Toggle the flipped class
+            });
+        });
+
+       
+        
+        </script>
+        <script type="text/javascript">
+            $(function () {
+              $('#myDiv').floatingWhatsApp({
+                phone: '5491133359850'
+              });
+            });
+          </script>
+</body>
+</html>

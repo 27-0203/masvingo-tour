@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Activities in Masvingo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #088178;
+            --primary-dark: #056b63;
+            --primary-light: #e0f2f1;
+            --secondary: #f3f4f6;
+            --text: #333;
+            --text-light: #666;
+            --white: #fff;
+            --gold: #FFD700;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Video Header Styles  100vh means 100% full page*/
+        .video-header {
+            position: relative;
+            height: 70vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 1s ease;
+        }
+        
+        .video-background video:not(.active) {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .video-overlay {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        
+        .video-overlay h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-overlay p {
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .video-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+        
+        .video-controls button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .video-controls button.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        /* Activity Buttons */
+        .activity-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .activity-btn {
+            background-color: var(--white);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-size: 1rem;
+        }
+        
+        .activity-btn:hover,
+        .activity-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .activity-btn.active {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+        
+        /* Content Area */
+        .content-area {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            margin-top: 2rem;
+        }
+        
+        .content-area.active {
+            display: block;
+        }
+        
+        .activity-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .activity-card {
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 280px;
+            position: relative;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 1.2rem 1rem;
+            color: white;
+        }
+        
+        .activity-card h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .activity-card p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+        }
+        
+        .price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin: 0.3rem 0;
+        }
+        
+        .stars {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Initial state - no content shown */
+        .initial-message {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .activity-content {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .video-overlay h1 {
+                font-size: 2.2rem;
+            }
+            
+            .video-overlay p {
+                font-size: 1rem;
+            }
+            
+            .activity-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .activity-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .activity-content {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .activity-card {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .video-overlay h1 {
+                font-size: 1.8rem;
+            }
+            
+            .video-overlay {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .activity-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .activity-card {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="video-header">
+        <div class="video-background">
+            <video autoplay muted loop class="active" data-id="1">
+                <source src="https://videos.pexels.com/video-files/4793475/4793475-sd_640_360_30fps.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop data-id="2">
+                <source src="https://videos.pexels.com/video-files/4823785/4823785-sd_640_360_30fps.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop data-id="3">
+                <source src="https://videos.pexels.com/video-files/7507165/7507165-sd_960_506_25fps.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop data-id="4">
+                <source src="https://th.bing.com/th/id/OIP.UKRYrjKjUciFoW9jVCHsQQHaE7?rs=1&pid=ImgDetMain" type="video/mp4">
+            </video>
+            <video autoplay muted loop data-id="5">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-going-down-a-river-on-a-kayak-4586-large.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop data-id="6">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-landscape-of-mountain-and-trees-1380-large.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="video-overlay">
+            <h1>Discover Masvingo</h1>
+            <p>Experience the breathtaking beauty and thrilling adventures of Zimbabwe's ancient heartland</p>
+        </div>
+        
+        <div class="video-controls">
+            <button class="active" data-video="1"></button>
+            <button data-video="2"></button>
+            <button data-video="3"></button>
+            <button data-video="4"></button>
+            <button data-video="5"></button>
+            <button data-video="6"></button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Top Things to Do in Masvingo</h1>
+        
+        <div class="activity-buttons">
+            <button class="activity-btn" data-category="safari">Safari & Wildlife</button>
+            <button class="activity-btn" data-category="adventure">Adventure</button>
+            <button class="activity-btn" data-category="water">Water Activities</button>
+            <button class="activity-btn" data-category="nature">Nature & Parks</button>
+            <button class="activity-btn" data-category="nature">Nature & Parks</button>
+            <button class="activity-btn" data-category="nature">Nature & Parks</button>
+            <button class="activity-btn" data-category="nature">Nature & Parks</button>
+        </div>
+        
+        <!-- Initial message (shown before any button is clicked) -->
+        <div class="initial-message" id="initial-message">
+            <p>Select a category above to discover exciting activities in Masvingo</p>
+        </div>
+        
+        <!-- Safari Content -->
+        <div class="content-area" id="safari-content">
+            <div class="activity-content">
+                <!-- Card 1 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1504173010664-32509aeebb62?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Safari Drives</h3>
+                        <p>Experience wildlife in their natural habitat with our expert guides.</p>
+                        <div class="price">$120 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Boma Dinners</h3>
+                        <p>Traditional dining under the stars with cultural performances.</p>
+                        <div class="price">$85 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★☆☆</div>
+                        <h3>Lion Encounters</h3>
+                        <p>Get up close with Africa's majestic lions in a safe environment.</p>
+                        <div class="price">$150 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Night Safaris</h3>
+                        <p>Discover nocturnal wildlife with special night vision equipment.</p>
+                        <div class="price">$140 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1534188753412-3e26d0f7183a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Elephant Tracking</h3>
+                        <p>Follow elephant herds with our conservation experts.</p>
+                        <div class="price">$175 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 6 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1550358864-518f202c02ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Photography Tours</h3>
+                        <p>Professional guided photography sessions in the wild.</p>
+                        <div class="price">$160 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 7 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1545062990-4a95e8e4b96d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Rhino Spotting</h3>
+                        <p>Observe endangered rhinos in their natural habitat.</p>
+                        <div class="price">$190 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 8 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Conservation Tours</h3>
+                        <p>Learn about wildlife conservation efforts in the region.</p>
+                        <div class="price">$95 per person</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Adventure Content -->
+        <div class="content-area" id="adventure-content">
+            <div class="activity-content">
+                <!-- Card 1 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Bungee Jumping</h3>
+                        <p>Thrill-seeking jumps from our secure platforms.</p>
+                        <div class="price">$110 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1591703291603-2150887a3db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Zip Line Adventures</h3>
+                        <p>Soar above the landscape on exciting zip lines.</p>
+                        <div class="price">$75 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>River Rafting</h3>
+                        <p>White water adventures on the mighty rivers.</p>
+                        <div class="price">$95 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1518630382442-5396b64591c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Rock Climbing</h3>
+                        <p>Scale breathtaking cliffs with professional guides.</p>
+                        <div class="price">$125 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Mountain Biking</h3>
+                        <p>Challenging trails through stunning landscapes.</p>
+                        <div class="price">$90 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 6 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd8a3b1193?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Hot Air Balloon</h3>
+                        <p>Spectacular aerial views at sunrise.</p>
+                        <div class="price">$220 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 7 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Paragliding</h3>
+                        <p>Soar like a bird over stunning landscapes.</p>
+                        <div class="price">$180 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 8 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Caving Expeditions</h3>
+                        <p>Explore ancient cave systems with expert guides.</p>
+                        <div class="price">$130 per person</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Water Content -->
+        <div class="content-area" id="water-content">
+            <div class="activity-content">
+                <!-- Card 1 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Dinner Cruises</h3>
+                        <p>Romantic sunset dinners on the water.</p>
+                        <div class="price">$130 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Boat Tours</h3>
+                        <p>Leisurely exploration of waterways and wildlife.</p>
+                        <div class="price">$65 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★☆☆</div>
+                        <h3>Waterfall Tours</h3>
+                        <p>Visit breathtaking waterfalls with expert guides.</p>
+                        <div class="price">$80 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1568495248636-6432b97bd949?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Kayaking</h3>
+                        <p>Paddle through scenic waterways at your own pace.</p>
+                        <div class="price">$70 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1512053459797-38c3a066cabd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Scuba Diving</h3>
+                        <p>Explore underwater worlds with certified instructors.</p>
+                        <div class="price">$150 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 6 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Fishing Trips</h3>
+                        <p>Catch the big one with our experienced guides.</p>
+                        <div class="price">$110 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 7 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Jet Ski Safaris</h3>
+                        <p>High-speed water adventures with scenic views.</p>
+                        <div class="price">$135 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 8 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Stand-up Paddleboarding</h3>
+                        <p>Peaceful exploration of calm waters.</p>
+                        <div class="price">$60 per person</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Nature Content -->
+        <div class="content-area" id="nature-content">
+            <div class="activity-content">
+                <!-- Card 1 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>National Parks</h3>
+                        <p>Explore protected areas with diverse ecosystems.</p>
+                        <div class="price">$50 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1429087969512-1e85aab2683d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Birdwatching</h3>
+                        <p>Spot rare and beautiful bird species.</p>
+                        <div class="price">$60 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Helicopter Tours</h3>
+                        <p>Aerial views of stunning landscapes.</p>
+                        <div class="price">$250 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Hiking Trails</h3>
+                        <p>Guided hikes through spectacular scenery.</p>
+                        <div class="price">$45 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Sunset Viewing</h3>
+                        <p>Visit the best spots for breathtaking sunsets.</p>
+                        <div class="price">$40 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 6 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Botanical Gardens</h3>
+                        <p>Explore diverse plant life with expert guides.</p>
+                        <div class="price">$35 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 7 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★★</div>
+                        <h3>Stargazing</h3>
+                        <p>Marvel at unpolluted night skies with astronomers.</p>
+                        <div class="price">$55 per person</div>
+                    </div>
+                </div>
+                
+                <!-- Card 8 -->
+                <div class="activity-card" style="background-image: url('https://images.unsplash.com/photo-1470004914212-05527e49370b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                    <div class="card-overlay">
+                        <div class="stars">★★★★☆</div>
+                        <h3>Nature Photography</h3>
+                        <p>Capture stunning landscapes with professional guidance.</p>
+                        <div class="price">$75 per person</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Activity Tab Switching
+            const activityButtons = document.querySelectorAll('.activity-btn');
+            const contentAreas = document.querySelectorAll('.content-area');
+            const initialMessage = document.getElementById('initial-message');
+            
+            activityButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    activityButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Hide all content areas
+                    contentAreas.forEach(area => area.classList.remove('active'));
+                    
+                    // Hide initial message
+                    initialMessage.style.display = 'none';
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding content area
+                    const category = this.getAttribute('data-category');
+                    document.getElementById(`${category}-content`).classList.add('active');
+                    
+                    // Smooth scroll to content
+                    document.getElementById(`${category}-content`).scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                });
+            });
+            
+            // Video Background Controls
+            const videoButtons = document.querySelectorAll('.video-controls button');
+            const videos = document.querySelectorAll('.video-background video');
+            
+            videoButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-video');
+                    
+                    // Update button states
+                    videoButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update video states
+                    videos.forEach(video => {
+                        video.classList.remove('active');
+                        if (video.getAttribute('data-id') === videoId) {
+                            video.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Auto-rotate videos
+            let currentVideo = 1;
+            const totalVideos = 6;
+            
+            setInterval(() => {
+                currentVideo = currentVideo % totalVideos + 1;
+                
+                // Update button states
+                videoButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`.video-controls button[data-video="${currentVideo}"]`).classList.add('active');
+                
+                // Update video states
+                videos.forEach(video => {
+                    video.classList.remove('active');
+                    if (video.getAttribute('data-id') == currentVideo) {
+                        video.classList.add('active');
+                    }
+                });
+            }, 8000);
+        });
+    </script>
+</body>
+</html>

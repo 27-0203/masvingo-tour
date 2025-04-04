@@ -1,0 +1,846 @@
+
+@media (max-width: 800px) {
+    body {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+}
+
+@media(max-width: 799px){
+    
+#navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    height: 100vh;
+    width: 300px;
+    background-color: #E3E6F3;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.01);
+    padding: 80px 0 0 10px;
+}
+navbar li{
+    margin-bottom:25px ;
+}
+
+}
+
+@media (min-width: 769px) {
+    body {
+        font-size: 16px; /* Larger font size for desktops */
+    }
+}
+@media (max-width: 500px) {
+    body {
+        background-color: #fff;
+        color: red;
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat" , sans-serif;
+   
+
+}
+
+#header h1{
+    font-size: 38px;
+    line-height: 64px;
+    color: #222;
+
+}
+span{
+    color: black;
+}
+
+h2{
+    font-size: 46px;
+    line-height: 54px;
+    color: #041e42;
+    font-family: My_font;
+    
+}
+
+#hotels h2{
+    padding-left: 300px;
+    
+}
+#section-hotels h2{
+    color: #041e42;
+}
+
+
+h4{
+    font-size: 20px;
+    color: #088178;
+    
+}
+
+h6{
+    font-weight: 700px;
+    font-size: 12px;
+    color: white;
+    
+}
+p{
+    font-size: 25px;
+    color: white;
+    margin: 15px 0 20px 0;
+    font-weight: 700px;
+    font-style: italic;
+
+}
+
+.section-p1{
+    padding: 40px 80px;
+
+}
+.section-m1{
+    margin: 40px 0;
+
+}
+
+button.normal{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 30px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+
+}
+body{
+    width: 100%;
+    background-color: #E3E6F3;
+
+
+}
+body #header-tags{
+    margin-left: 500px;
+}
+#header h1{
+    margin-left: -20px;
+}
+
+
+#header{
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 5px 80px;
+box-shadow:0 5px 15px rgba(0, 0, 0, 0.06) ;
+background: whitesmoke;
+z-index: 999;
+position: sticky;
+top: 0;
+left: 0;
+ 
+}
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 18px;
+
+}
+
+/* To remove bullet points*/
+#navbar li{
+list-style: none;
+padding: 0 20px;
+position: relative;
+}
+
+#navbar li a{
+     text-decoration: none;
+     font-size: 16px;
+     font-weight: 600px;
+     color: #1a1a1a;
+     transition: 0.3s ease;
+
+}
+#navbar li a:hover,
+#navbar li a.active{
+    color: #088178; 
+
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after{
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #088178;
+    position: absolute;
+    bottom: -4px;
+    left: 20px  ;
+}
+
+#mobile{
+    display: none;
+    align-items: center;
+
+}
+
+#simple-list-item-1 #button{
+    display: flex;
+    justify-content: space-between;
+    align-items: row;
+}
+
+
+#hero{
+    background-image: url(https://images.trvl-media.com/hotels/1000000/20000/12900/12805/afefcd84_z.jpg);
+
+    height: 90vh;
+    width: 100%;
+    background-position: top 25% right 0;
+    background-size: 100% 90vh;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    animation: change 200s infinite ease-in-out;
+}
+
+@keyframes change{
+    0%{
+        background-image: url(https://th.bing.com/th/id/R.0a10c54d36dd296f1239df9382705018?rik=JwqBPLq5KhGc8A&riu=http%3a%2f%2fdev.zimbabwetourism.net%2fdestination%2fwp-content%2fuploads%2f2020%2f08%2fGreat-Zim-Masvingo-Ruins.jpg&ehk=IlGT1Iz6%2baICcu8nemo0NXyI%2f%2bDInL8NK9gwBNBmS6s%3d&risl=&pid=ImgRaw&r=0);
+    }
+    10%{
+        background-image: url(./images/chris-lawton-9T346Ij4kGk-unsplash.jpg);
+    }
+    20%{
+        background-image: url(https://images.trvl-media.com/lodging/1000000/20000/12900/12805/d3eb21ea.jpg?impolicy=resizecrop&rw=1200&ra=fit);
+    }
+    30%{
+        background-image: url(https://cdn-mzansimagic.dstv.com/images/News/2022/03/09/584599/5/1646814533-47_GettyImages_1231946435.jpg);
+    }
+    40%{
+        background-image: url(https://cloudfront.safaribookings.com/blog/2024/06/00-Best_Safari_Country-BW-header1200px.jpg);
+    }
+    
+    50%{
+        background-image: url(https://www.welgrowgroup.com/blog/wp-content/uploads/2019/02/hemingways-ol-seki-mara-camp-masai-mara-national-reserve-kenya-3297.jpg);
+    }
+
+    60%{
+        background-image: url(./images/arthur-humeau-3xwdarHxHqI-unsplash.jpg);
+    }
+    70%{
+        background-image: url(https://th.bing.com/th/id/OIP.7ZgERF4Zx7mUp6GFGDEvrAHaFB?w=272&h=184&c=7&r=0&o=5&pid=1.7);
+    }
+    80%{
+        background-image: url(https://1.bp.blogspot.com/-NcYWK9GacEo/UIQC7jrFOzI/AAAAAAAAAiU/GQKLK2wSdeM/s1600/African+Lions+Masai+Mara+Kenya.jpg);
+    }
+    90%{
+        background-image: url(./images/earth-DXuxHw3S5ak-unsplash.jpg);
+    }
+    100%{
+        background-image: url(https://c0.wallpaperflare.com/preview/731/630/370/limpopo-south-africa-venda-tribe-african-dance.jpg);
+    }
+}
+
+
+#hero h4{
+    padding-bottom: 15px;
+
+}
+
+#hero h1{
+    color: red;
+    font-size: 80px;
+    line-height: 64px;
+    font-family:My_font ;
+    margin-top: 150px;
+}
+#hero p span{
+    color: red;
+    font-weight: 800;
+}
+
+#hero p{
+    margin-top: 50px;
+    color: fff;
+}
+#hero button{
+   
+   background-color:#E3E6F3;
+   backdrop-filter: blur(1px);
+   color: #088178;
+   border: 0;
+   padding: 14px 80px 14px 65px;
+   background-repeat: no-repeat;
+   cursor: pointer;
+   font-weight: 700; 
+   font-size: 20px;
+   transition: 0.3 ease;
+   border-radius: 7px;
+   border: 1px solid grey;
+   margin-top: 0px;
+   
+}
+
+#hero button:hover{
+    background: transparent;
+    
+    border-color:#fff ;
+    border: 1px solid grey;
+    color: #fff;
+
+}
+#header  li a{
+font-size: 20px;
+}
+#feature{
+    background: #E3E6F3;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+#feature .fe-box{
+    width: 200px;
+    text-align: center;
+    padding: 25px 10px;
+    border: 1px solid #cce7d0;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    margin: 15px 15px;
+    gap: 6px;
+    
+}
+
+#feature .fe-box img{
+    width: 100%;
+    margin-bottom: 10px;
+    
+
+}
+
+.fe-box {
+    flex: 1 1 calc(20% - 20px);
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.fe-box img{
+    width: 100%;
+    height: auto;
+}
+#feature .fe-box:hover{
+    box-shadow: 10px 10px 54px rgba( 70, 62, 221, 0.1);
+}
+#feature .fe-box h6{
+    display: inline-block;
+    padding: 9px 8px 6px 8px;
+    line-height: 2;
+    border-radius: 4px;
+    color: black;
+    background-color: #e63057;
+}
+#feature .fe-box:nth-child(2) h6{
+    background-color: #cdebbc;
+
+}
+
+#feature .fe-box:nth-child(3) h6{
+    background-color: #cdd4f2;
+    
+}
+#feature .fe-box:nth-child(4) h6{
+    background-color: #f6dbf6;
+    
+}
+#feature .fe-box:nth-child(5) h6{
+    background-color: #fff2e5;
+    
+}
+
+#Product1{
+    text-align: center;
+
+}
+#Product1 h2{
+    color: red;
+}
+#Product1 .pro-container{
+ display: flex;
+ justify-content: space-between;
+ padding-top: 20px;
+ flex-wrap: wrap;   
+}
+
+#Product1 .pro{
+    width: 23%;
+    min-width: 250px;
+    padding: 10px 12px;
+    border-radius: 25px;
+    border-radius:25px ;
+    cursor: pointer;
+    border: 1px solid#cce7d0;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    margin: 15px 0 ;
+    transition: 0.2 ease;
+    position: relative;
+}
+
+#Product1 .pro:hover{
+    box-shadow: 20px 20px  30px rgba(0, 0, 0, 0.06);
+}
+
+#Product1 .pro img{
+    width: 100%;
+    border-radius: 20px;
+}
+#Product1 .pro  .des{
+    text-align: start;
+    padding: 10px 0;
+}
+#Product1 .pro .des span{
+    color: #606063;
+    font-size: 12px;
+}
+#Product1 .pro .des h5{
+    font-size: 20px;
+    padding-top: 7px;
+    color: #1a1a1a;
+
+}
+
+#Product1 .pro .des i{
+    font-size: 12px;
+    color: rgba(243, 181, 25);
+
+}
+#Product1 .pro .des h3{
+    padding-top: 7px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #088178;
+}
+#Product1 p{
+    font-family: My_font;
+font-style: italic;
+color: red;
+}
+
+#Product1 .pro .cart{
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    border-radius: 50px;
+    background-color: #e8f6ea;
+    font-weight: 500;
+    color: #088178;
+    border-radius: 1px solid #cce7de;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+
+}
+#Product1 .pro .cart:hover{
+    color: rgb(230, 6, 6);
+}
+
+#banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+    background-image: url(./Images/Products/OIP.jpeg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+}
+
+#banner h4{
+    color: #fff;
+    font-size: 16px;
+
+}
+#banner h2{
+    color: #fff;
+    font-size: 30px;
+    padding: 10px 0;
+}
+#banner h2 span {
+    color: red;
+}
+#banner button{
+    background-color: #088178;
+}
+#banner button:hover{
+background-color: #fff;
+}
+#Product1{
+    text-align: center;
+
+}
+#Product1 .pro-container{
+ display: flex;
+ justify-content: space-between;
+ padding-top: 20px;
+ flex-wrap: wrap;   
+}
+
+#Product1 .pro{
+    width: 23%;
+    min-width: 250px;
+    padding: 10px 12px;
+    border-radius: 25px;
+    border-radius:25px ;
+    cursor: pointer;
+    border: 1px solid#cce7d0;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    margin: 15px 0 ;
+    transition: 0.2 ease;
+    position: relative;
+    
+}
+
+#Product1 .pro:hover{
+    box-shadow: 20px 20px  30px rgba(0, 0, 0, 0.06);
+}
+
+#Product1 .pro img{
+    width: 100%;
+    border-radius: 20px;
+}
+#Product1 .pro  .des{
+    text-align: start;
+    padding: 10px 0;
+    margin-left: 5px;
+}
+#Product1 .pro .des span{
+    color: #606063;
+    font-size: 12px;
+}
+#Product1 .pro .des h5{
+    font-size: 20px;
+    padding-top: 7px;
+    color: #1a1a1a;
+
+}
+
+#Product1 .pro .des i{
+    font-size: 12px;
+    color: rgba(243, 181, 25);
+
+}
+#Product1 .pro .des h3{
+    padding-top: 7px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #088178;
+}
+#Product1 p{
+    font-family: My_font;
+font-style: italic;
+color: black;
+}
+
+#Product1 .pro .cart{
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    border-radius: 50px;
+    background-color: #e8f6ea;
+    font-weight: 500;
+    color: #088178;
+    border-radius: 1px solid #cce7de;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+
+}
+#Product1 .pro .cart:hover{
+    color: rgb(230, 6, 6);}
+
+
+    #newsletter{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        background-image: url(https://plus.unsplash.com/premium_photo-1737114947910-de4c8aa3c0e2?q=80&w=1466&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) ;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 20% 30%;
+        background-color: #041e42;
+    }
+    
+    #newsletter h4{
+        font-size: 30px;
+        font-weight: 700;
+        color: #fff;
+        font-family: My_font;
+    }
+    #newsletter p{
+        font-size: 14px;
+        font-weight: 600;
+        color: #000;
+        
+    
+    }
+    
+    #newsletter p span{
+        color: red;
+    }
+    
+    #newsletter .form{
+        display: flex;
+        width: 40px;
+    }
+    #newsletter input{
+        height: 3.125rem;
+        padding:  0 1.25em;
+        margin-left: -200px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        outline: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    
+    }
+    #newsletter button{
+        background-color: #088178;
+        color: #fff;
+        white-space: nowrap;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        margin: 0;
+        padding: 10px 20px;
+        display: inline-block;
+    }
+
+
+    .wrapper p{
+        color: #000;
+        font-size: 18px;
+        padding: 5px;
+    }
+    .wrapper h2{
+color: #088178;
+margin-left: -300px;
+    }
+     .img1{
+        
+        border: none;
+        border-radius: 4px;
+    }
+    #section-hotels{
+        background-color: #E3E6F3;
+    }
+    .row{
+        width: 1500px;
+
+        padding-right: 30px;
+        border: none;
+        border-radius: 6px;
+        height: 350px;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 1px solid rgba( 70, 62, 221, 0.1);
+        
+            margin-left: 2;
+            margin-right: 40px;
+            padding-left: 0px;
+            padding-right: 60px;
+        
+        
+    }
+     .col-4 #img{
+        height: 340px;
+     }
+    .wrapper h4 a{
+        color:#088178;
+        text-decoration: none;
+    }
+    .row .col-8 #two{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    footer{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+    }
+    footer .col{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+
+}
+
+footer .logo{
+    margin-bottom: 30px;
+    
+}
+.logo{
+    height: 2px;
+    width: 3px;
+}
+footer h4{
+    font-size: 17px;
+    padding-bottom: 20px;
+
+}
+footer p{
+    font-size:13px ;
+    margin: 0 0 8px 0;
+    color: #000;
+    font-style: oblique;
+
+}
+footer a{
+    font-size: 13px;
+    text-decoration: none;
+    color:#222 ;
+    margin-bottom: 10px;
+}
+footer .follow{
+margin-top: 20px;
+}
+
+footer .icon i{
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 1px solid grey;
+    border-radius: 4px;
+    row-gap: 7px;
+    border: none;
+
+}
+footer .install .row img{
+border: 1px solid #088178;
+border-radius: 6px;
+border: none;
+display: flex;
+flex-direction: row;
+}
+footer .install  img{
+    margin: 10px 0 15px 0;
+
+}
+footer .follow i:hover,
+    footer a:hover{
+        color: #088178;
+    }
+    footer .copyright{
+        width: 100%;
+        text-align: center;
+    }
+    footer .col .install .row{
+        flex-direction: row;
+    }
+    footer .col img{
+        margin-left: -46px;
+    }
+    
+
+    #image{
+        width: 100%;
+        max-width: 400px;
+        vertical-align: middle;
+        object-fit: cover;
+        height: 350px;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+    .wrapper{
+        padding: 0 15px;
+        padding-left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        gap: 5rem;
+      
+        max-width: 1275px;
+        border: 1px solid grey;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(36, 30, 30, 0.3); /* Subtle border */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid grey;
+        border-radius: 7px;
+        background-color:whitesmoke;
+        color: #088178;
+        font-size: 10px;
+       
+            
+        
+    }
+    body .wrapper{
+        margin-left:35px ;
+        margin-right:0px ;
+        padding-right: 5px;
+       
+    }
+    .wrapper img{
+        margin-left: 0;
+    }
+    .intro{
+        flex: 1;
+    }
+    .intro h2{
+        margin-left: 6px;
+    }
+
+    
+
+    .wrapper2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 400px; /* Set your desired height */
+        overflow: hidden;
+        background: url(./images/anthony-delanoix-Q0-fOL2nqZc-unsplash.jpg);
+    }
+    map .wrapper2 img {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        border-radius: 7px;
+    }
+
+
+   
+
+    .map h2{
+        margin-left: 700px;
+    }
